@@ -1,0 +1,32 @@
+Bootloader - Infraestrutura de Software (cin.ufpe.br/~if677):
+
+Lucas Almeida Pereira de Lima (lapl)
+Mateus Moury da Rosa Fernandes Borges (mmfrb)
+
+chellOS:
+
+O nome chellOS é devido ao nome da personagem de Portal ( http://en.wikipedia.org/wiki/Chell_(Portal) ), alem disso, o nosso Bootloader simula um shell.
+
+-Animação estilo tela de loading de Portal. Na tela de loading do portal ha uma pessoa entrando num portal azul e saindo pelo laranja, voltando para o azul e assim por diante. (http://garotasgeeks.com/wordpress/wp-content/uploads/2011/05/wall-portal-deviant-art.jpg em movimento). Para simular isso, geramos algumas imagens que mostram o homem em diferentes posições, e damos um delay entre o aparecimento de cada imagem. Devido a limitações do tamanho do arquivo, a quantidade de imagens utilizadas foi menor. Repetimos o loop 6 vezes e entramos na tela de boas vindas.
+
+O sistema permite ao usuario que digite algum comando, que se for algum dos implementados irá gerar a respectiva ação.
+
+Comandos:
+
+-apt-get moo (mesma coisa que quando digitado no terminal do linux)
+
+-comandos usando cowsay: cowsay eh um comando existente no terminal do linux, há várias ascii arts e easter-eggs. Inspirado nisso, a gente colocou para aparecer algumas ascii arts quando digitado o comando cowsay * (onde * eh algo digitado pelo usario). eh possivel digitar:
+	-cowsay tux: http://en.wikipedia.org/wiki/Tux
+	-cowsay aperture_science: http://en.wikipedia.org/wiki/Aperture_Science#Setting
+	-cowsay cake: também em referência a Portal
+
+-soma: No jogo foram gerados aleatoriamente 40 números, a gente guardou em dois arrays (20 em cada array), e guardou outro array com o resultado da soma, i.e., game_soma_resp[i]=game_soma_a[i]+game_soma_b[i]. Fazemos um loop e para cada iteração imprimimos o numero a e o numero b no formato adequado. Lemos do usario a sua resposta e comparamos com a esperada, dizemos se ele acertou ou errou.
+
+-crivo: O crivo de erastotenes (http://pt.wikipedia.org/wiki/Crivo_de_Erat%C3%B3stenes) eh um metodo rapido e simples de gerar numeros primos, utilizado como pre-processamento em diversos algoritmos, e.g., fatoração em fatores primos, mmc, numero de divisores, soma dos divisores, EulerPhi. No nosso codigo o crivo foi gerado ate 100, e imprimos os numeros primos ate 100. O pseudocodigo:
+	//inicializa um array bitset com tudo 1.
+	bitset[0]=bitset[1]=0
+	for(i = 2; i < upperbound; ++i):
+		se bitset[i]==1: //i eh primo
+			for(j=i*i;j<upp;j+=i): //os multiplos de i nao sao primos
+				bitset[i]=0
+
